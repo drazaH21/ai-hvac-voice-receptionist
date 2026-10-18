@@ -12,6 +12,7 @@ class Settings(BaseSettings):
     groq_model: str = "openai/gpt-oss-20b"
     groq_timeout_seconds: float = 2.5
     database_url: str = "sqlite:///./receptionist.db"
+    twilio_auth_token: str = "test_token"
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 
