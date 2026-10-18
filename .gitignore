@@ -1,0 +1,10 @@
+.aider*
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.db-journal
+*.db-wal
+.pytest_cache/
