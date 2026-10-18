@@ -18,7 +18,7 @@ async def test_health_ready_returns_200_ok():
     data = response.json()
     assert data["status"] == "ready"
     assert "version" in data
-    assert data["database"] == "uninitialized"
+    assert data["database"] == "ready"
 
 def test_config_reads_defaults():
     settings = get_settings()

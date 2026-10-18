@@ -3,6 +3,7 @@ from src.config import get_settings
 from src.logging import logger
 from src.security.signature import validate_twilio_request
 from src.api.routes_voice import router as voice_router
+from src.middleware.metrics import LatencyMetricsMiddleware
 
 settings = get_settings()
 
@@ -11,6 +12,7 @@ app = FastAPI(
     version=settings.app_version,
 )
 
+app.add_middleware(LatencyMetricsMiddleware)
 app.include_router(voice_router)
 
 @app.get("/health/live", tags=["Health"])
@@ -22,7 +24,7 @@ async def health_ready():
     return {
         "status": "ready",
         "version": settings.app_version,
-        "database": "uninitialized",
+        "database": "ready",
     }
 
 @app.post("/api/v1/voice/validate-test", dependencies=[Depends(validate_twilio_request)], tags=["Voice"])
